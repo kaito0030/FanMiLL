@@ -57,7 +57,7 @@
 
 				</div>
 
-				<button type="submit" class="submit-button login-button">
+				<button type="submit" class="submit-button auth-button">
 
 					ログイン</button>
 

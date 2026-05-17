@@ -447,10 +447,17 @@ a:hover {
 }
 
 .auth-button {
-
-	width: 100%;
-
-	margin-top: 8px;
+    display: block;
+    width: 100%;
+    margin: 24px auto 0;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 999px;
+    background: rgb(255, 155, 84);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .auth-links {
