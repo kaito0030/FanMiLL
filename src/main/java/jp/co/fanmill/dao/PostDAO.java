@@ -11,7 +11,37 @@ import jp.co.fanmill.dto.PostDTO;
 import jp.co.fanmill.util.DBUtil;
 
 public class PostDAO {
+    
+	/*
+     * ポスト存在確認
+     * */
+	
+	public boolean existsPost(int postId) {
+        if(postId<=0) {
+        	    return false;
+        }
+	    String sql =
+	            "SELECT 1 " +
+	            "FROM posts " +
+	            "WHERE post_id = ?";
 
+	    try (
+	            Connection con = DBUtil.getConnection();
+	            PreparedStatement ps = con.prepareStatement(sql)
+	    ) {
+	        ps.setInt(1, postId);
+
+	        try (ResultSet rs = ps.executeQuery()) {
+	            return rs.next();
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return false;
+	}
+	
     /*
      * 投稿登録
      */
@@ -246,7 +276,7 @@ public class PostDAO {
     /*
      *親ポストへのリプライ一覧を取得 
      */
-    public List<PostDTO> findByParentPostId(int parentPostId){
+    public List<PostDTO> findByParentPostId(Integer parentPostId){
         String sql =
                 "SELECT " +
                 "p.post_id, " +
@@ -376,15 +406,9 @@ public class PostDAO {
                             rs.getString("user_name")
                     );
 
-                    int parentPostId =
-                            rs.getInt("parent_post_id");
-
-                    if (!rs.wasNull()) {
-
-                        post.setParentPostId(
-                                parentPostId
-                        );
-                    }
+                    post.setParentPostId(
+                    	 (Integer)rs.getInt("parent_post_id")
+                    );
 
                     post.setContent(
                             rs.getString("content")
@@ -522,6 +546,7 @@ public class PostDAO {
             "ON p.user_id = u.user_id " +
             joinLikeForScore +
             "WHERE p.parent_post_id IS NULL " +
+            "AND p.updated_at >= CURRENT_TIMESTAMP - INTERVAL '30 days'"+
             whereCondition +
             groupBy +
             orderBy +

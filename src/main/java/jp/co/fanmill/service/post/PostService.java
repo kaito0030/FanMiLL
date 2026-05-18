@@ -12,7 +12,7 @@ public class PostService {
      * 投稿作成
      */
     public boolean createPost(
-    		    int perentPostId,
+    		Integer perentPostId,
             String userId,
             String content
     ) {
@@ -44,5 +44,17 @@ public class PostService {
 
         return postDAO.delete(postId, userId);
     }
+    
+    public PostDTO getPostDetail(int postId) {
+
+    	     if(postId<=0) {
+
+    	    	     return null;    	         
+    	     }
+
+    	     return postDAO.findByPostId(postId);
+    }
+    
+
 }
 

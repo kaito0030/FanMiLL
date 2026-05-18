@@ -29,7 +29,7 @@ public class PostListService {
     ) {
 
         if (keyword == null) {
-            keyword = "";
+            return null;
         }
 
         if (sort == null || sort.isBlank()) {

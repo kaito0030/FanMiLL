@@ -49,10 +49,35 @@ public class PostServlet extends HttpServlet {
 
             return;
         }
-        int parentPostId=
-        		Integer.parseInt(
-        				request.getParameter("parentPostId")
-        				);
+        
+        Integer parentPostId = null;
+
+        String parentPostIdStr =
+                request.getParameter(
+                        "parentPostId"
+                );
+
+        if (parentPostIdStr != null
+                && !parentPostIdStr.isBlank()) {
+
+            try {
+
+                parentPostId =
+                        Integer.parseInt(
+                                parentPostIdStr
+                        );
+
+            } catch (NumberFormatException e) {
+
+                response.sendRedirect(
+                        request.getContextPath()
+                        + "/home"
+                );
+
+                return;
+            }
+        }
+        
         String content =
                 request.getParameter("content");
 

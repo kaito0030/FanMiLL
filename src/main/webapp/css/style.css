@@ -316,10 +316,10 @@ a:hover {
 
 	background:
 		linear-gradient(90deg,
-			rgb(253, 196, 0),
-			rgb(255, 128, 64));
+			rgb(255, 237, 219),
+			rgb(255, 255, 244));
 
-	color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
 
 	font-size: 24px;
 	font-weight: 800;

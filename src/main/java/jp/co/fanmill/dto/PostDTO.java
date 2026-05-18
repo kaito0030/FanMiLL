@@ -9,7 +9,7 @@ public class PostDTO implements Serializable {
 
     private int postId;
 
-    private int parentPostId;/*add on phase2*/
+    private Integer parentPostId;/*add on phase2*/
     
     private String userId;
 
@@ -36,11 +36,11 @@ public class PostDTO implements Serializable {
      * Getter / Setter
      */
     /*add on phase2*/
-    public int getParentPostId() {
+    public Integer  getParentPostId() {
     	     return this.parentPostId;
     }
     /*add on phase2*/
-    public void setParentPostId(int parentPostId) {
+    public void setParentPostId(Integer parentPostId) {
     	     this.parentPostId=parentPostId;
     }
     /*add on phase2*/
